@@ -26,7 +26,9 @@
             export HEX_HOME=$PWD/.nix-hex
             export PATH=$MIX_HOME/bin:$MIX_HOME/escripts:$HEX_HOME/bin:$PATH
 
-            mix local.hex --if-missing
+            echo "made it here"
+            mix local.hex --force 
+            echo "not here"
             export LANG=en_US.UTF-8
             export ERL_AFLAGS="-kernel shell_history enabled"
           '';
@@ -44,6 +46,7 @@
             # run tests?
             doCheck=false;
             packages=basePackages;
+            buildInputs = basePackages;
             buildPhase = ''
               mix escript.build
             '';
