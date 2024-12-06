@@ -48,6 +48,8 @@
             packages=basePackages;
             buildInputs = basePackages;
             buildPhase = ''
+              ${hooks}
+              mix deps.get
               mix escript.build
             '';
             installPhase = ''
