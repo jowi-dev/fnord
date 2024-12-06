@@ -26,9 +26,7 @@
             export HEX_HOME=$PWD/.nix-hex
             export PATH=$MIX_HOME/bin:$MIX_HOME/escripts:$HEX_HOME/bin:$PATH
 
-            echo "made it here"
             mix local.hex --force 
-            echo "not here"
             export LANG=en_US.UTF-8
             export ERL_AFLAGS="-kernel shell_history enabled"
           '';
@@ -55,8 +53,7 @@
             installPhase = ''
               #/etc/profiles/per-user/$USER/share/doc/${packageName}/md/
               mkdir -p $out/bin
-              mkdir -p $out/${docPath}
-              mv ${packageName} $out/bin
+              mv fnord $out/bin/
             '';
           };
         };

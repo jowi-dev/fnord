@@ -1,8 +1,10 @@
 # The directory Mix will write compiled artifacts to.
 /_build/
 
+# Nix related
 /.nix-mix/
 /.nix-hex/
+/result/
 
 # If you run "mix test --cover", coverage assets end up here.
 /cover/
