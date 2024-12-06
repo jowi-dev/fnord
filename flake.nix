@@ -7,7 +7,7 @@
     flake-utils.lib.eachDefaultSystem (system:
     let 
       pkgs = import nixpkgs { inherit system; }; 
-      buildInputs = with pkgs; [elixir] ++ additionalInputs;
+      buildInputs = with pkgs; [elixir]; 
     in {
         devShells.default = pkgs.mkShell {
           buildInputs = buildInputs; 
