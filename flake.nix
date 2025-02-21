@@ -38,25 +38,19 @@
             shellHook = hooks;
           };
 
-          packages.default = pkgs.stdenv.mkDerivation {
-            pname = "${packageName}";
-            version = "0.0.0";
-            src = ./.;
-            # run tests?
-            doCheck=false;
-            packages=basePackages;
-            buildInputs = basePackages;
-            buildPhase = ''
-              ${hooks}
-              mix deps.get
+          packages.default = pkgs.mixRelease {
+
+            postBuild = ''
+
+
               mix escript.build
             '';
             installPhase = ''
-              #/etc/profiles/per-user/$USER/share/doc/${packageName}/md/
               mkdir -p $out/bin
-              mv fnord $out/bin/
+              mv ${packageName} $out/bin/${packageName}
             '';
           };
+        };
         };
     };
 }
