@@ -19,6 +19,9 @@
             cacert
           ] ++ pkgs.lib.optionals pkgs.stdenv.isLinux [inotify-tools] ;
 
+          erl = pkgs.beam.interpreters.erlang_27;
+          erlangPackages = pkgs.beam.packagesWith erl;
+
             
           hooks = ''
             # this allows mix to work on the local directory
@@ -38,11 +41,17 @@
             shellHook = hooks;
           };
 
-          packages.default = pkgs.mixRelease {
-
+          packages.default =   erlangPackages.mixRelease {
+            version = "0.1.0";
+            src=./.;
+            pname = "${packageName}";
+            mixFodDeps = erlangPackages.fetchMixDeps {
+              version = "0.1.0";
+              src = ./.;
+              pname = "${packageName}-deps";
+              sha256 = "sha256-dTrGuueH4zyEWL2nt6oHXIvUbgbIvnE+8xd8B/wkZmo=";
+            };
             postBuild = ''
-
-
               mix escript.build
             '';
             installPhase = ''
@@ -50,7 +59,6 @@
               mv ${packageName} $out/bin/${packageName}
             '';
           };
-        };
         };
     };
 }

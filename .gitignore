@@ -4,7 +4,7 @@
 # Nix related
 /.nix-mix/
 /.nix-hex/
-/result/
+/result
 
 # If you run "mix test --cover", coverage assets end up here.
 /cover/
