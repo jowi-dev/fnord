@@ -16,6 +16,7 @@
           basePackages = with pkgs; [
             elixir 
             erlang_27
+            cacert
           ] ++ pkgs.lib.optionals pkgs.stdenv.isLinux [inotify-tools] ;
 
             
